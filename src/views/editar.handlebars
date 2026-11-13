@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Editar avistamiento</h1>
+    <a href="/" class="btn btn-outline-secondary btn-sm">Volver al listado</a>
+</div>
+
+<section class="card">
+    <div class="card-header bg-white">
+        <h2 class="h5 mb-0">{{avistamiento.nombreComun}} <small class="text-muted">({{avistamiento.nombreCientifico}})</small></h2>
+    </div>
+    <div class="card-body">
+        <form action="/api/avistamientos/update/{{avistamiento._id}}" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label for="nombreComun" class="form-label">Nombre común</label>
+                <input type="text" class="form-control" id="nombreComun" name="nombreComun"
+                       value="{{avistamiento.nombreComun}}" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="nombreCientifico" class="form-label">Nombre científico</label>
+                <input type="text" class="form-control" id="nombreCientifico" name="nombreCientifico"
+                       value="{{avistamiento.nombreCientifico}}" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select class="form-select" id="categoria" name="categoria" required>
+                    <option value="Mamífero" {{#if (eq avistamiento.categoria "Mamífero")}}selected{{/if}}>Mamífero</option>
+                    <option value="Ave" {{#if (eq avistamiento.categoria "Ave")}}selected{{/if}}>Ave</option>
+                    <option value="Reptil" {{#if (eq avistamiento.categoria "Reptil")}}selected{{/if}}>Reptil</option>
+                    <option value="Anfibio" {{#if (eq avistamiento.categoria "Anfibio")}}selected{{/if}}>Anfibio</option>
+                    <option value="Flora" {{#if (eq avistamiento.categoria "Flora")}}selected{{/if}}>Flora</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="zona" class="form-label">Zona</label>
+                <input type="text" class="form-control" id="zona" name="zona"
+                       value="{{avistamiento.zona}}" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="estadoConservacion" class="form-label">Estado de conservación</label>
+                <select class="form-select" id="estadoConservacion" name="estadoConservacion">
+                    <option value="Preocupación menor" {{#if (eq avistamiento.estadoConservacion "Preocupación menor")}}selected{{/if}}>Preocupación menor</option>
+                    <option value="Vulnerable" {{#if (eq avistamiento.estadoConservacion "Vulnerable")}}selected{{/if}}>Vulnerable</option>
+                    <option value="En peligro" {{#if (eq avistamiento.estadoConservacion "En peligro")}}selected{{/if}}>En peligro</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="investigador" class="form-label">Investigador</label>
+                <input type="text" class="form-control" id="investigador" name="investigador"
+                       value="{{avistamiento.investigador}}" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="fechaRegistro" class="form-label">Fecha de registro</label>
+                <input type="date" class="form-control" id="fechaRegistro" name="fechaRegistro"
+                       value="{{fechaIso avistamiento.fechaRegistro}}">
+            </div>
+
+            <div class="col-12 d-flex gap-2">
+                <button type="submit" class="btn btn-success">Actualizar avistamiento</button>
+                <a href="/" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</section>
